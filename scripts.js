@@ -28,4 +28,45 @@ for (let i = 0; i < data.length; i += 1) {
     const price = document.createElement('P')
     price.innerText = data[i].price
     newDiv.appendChild(price)
+
+    // Make a button 
+    const button = document.createElement('button')
+    // add a data-id name to the button
+    button.className = 'add-to-cart'
+	// creates a custom attribute called data-price. That will hold price for each element in the button
+	button.dataset.price = data[i].price
+	button.innerHTML = "Add to Cart"
+	newDiv.appendChild(button)
 }
+
+
+
+const cart = []
+
+document.body.addEventListener('click', (e) => {
+    if (e.target.matches('.add-to-cart')) {
+      console.log(e.target)
+      addItemToCart(e.target.id, e.target.dataset.price)
+      console.log(cart) // Use console.log to test your work
+    }
+  })
+
+const addItemToCart = (id, price) => {
+    // Loop over cart items. 
+    for (let i = 0; i < cart.length; i += 1) {
+      // If we find a matching item increase the quantity
+      if (cart[i].id === id) {
+        cart[i].qty += 1
+        return // exit this function early
+      }
+    }
+    // If no matching items were found add a new item
+    cart.push({ id, price, qty: 1 })
+  }
+
+
+
+//function removeFromCart(itemId) {}
+
+//function calculateTotal() {}
+

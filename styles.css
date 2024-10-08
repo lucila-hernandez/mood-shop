@@ -45,6 +45,9 @@ body {
     overflow: hidden;
     margin: 20px; 
     text-align: center;
+    display: flex; 
+    flex-direction: column;
+    min-height: 300px; 
 }
 
 .item img {
@@ -65,3 +68,12 @@ body {
     font-weight: bold;
     color: green;
 }
+
+.item button {
+    font-size: 12px;
+    color: black;
+    margin: 10px auto; 
+    padding: 5px 10px; 
+    max-width: 120px; 
+    width: auto; 
+ }
