@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  background-color: bisque;
+    background-color: bisque;
 }
 
 .page-header ul {
@@ -24,4 +24,44 @@ body {
     display: block;
     padding:0.5em;
     text-decoration:none;
+}
+
+.items {
+    width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+
+.items img {
+    width: 100%;
+    height: auto;
+}
+
+.item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px; 
+    text-align: center;
+}
+
+.item img {
+    width: 100%;
+    height: auto;    
+}
+
+.item p { 
+    margin: 10px;
+    font-size: 1rem;
+}
+
+.item p:nth-child(2) {  
+    color: black;
+}
+
+.item p:nth-child(3) { 
+    font-weight: bold;
+    color: green;
 }
