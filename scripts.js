@@ -30,9 +30,11 @@ for (let i = 0; i < data.length; i += 1) {
     newDiv.appendChild(price)
 
     // Make a button 
-    const button = document.createElement('button')
-    // add a data-id name to the button
+	const button = document.createElement('button')
+
     button.className = 'add-to-cart'
+	// add an  id name to the button
+	button.dataset.id = data[i].name
 	// creates a custom attribute called data-price. That will hold price for each element in the button
 	button.dataset.price = data[i].price
 	button.innerHTML = "Add to Cart"
@@ -49,7 +51,7 @@ document.body.addEventListener('click', (e) => {
       addItemToCart(e.target.id, e.target.dataset.price)
       console.log(cart) // Use console.log to test your work
     }
-  })
+})
 
 const addItemToCart = (id, price) => {
     // Loop over cart items. 
@@ -62,11 +64,31 @@ const addItemToCart = (id, price) => {
     }
     // If no matching items were found add a new item
     cart.push({ id, price, qty: 1 })
-  }
+}
 
+const displayCart = () => {
+    console.log(cart)
+    let cartStr = ''
+    for (let i = 0; i < cart.length; i += 1) {
+      const item = cart[i]
+      cartStr += `<li>
+        <span>${item.id}</span>
+        <input type="number" value="${item.qty}" class="input-qty" data-id="${item.id}">
+        <span>${item.price}</span>
+        <span>${(item.price * item.qty).toFixed(2)}</span>
+        <button class="button-add" data-id="${item.id}">+</button>
+        <button class="button-sub" data-id="${item.id}">-</button>
+      </li>`
+    }
+    // Get the cart 
+    const cartItems = document.querySelector('#cart-items')
+    // Set the inner html of the cart
+    cartItems.innerHTML = cartStr
+}
 
-
-//function removeFromCart(itemId) {}
-
-//function calculateTotal() {}
-
+document.body.addEventListener('click', (e) => {
+    if (e.target.matches('.add-to-cart')) {
+      addItemToCart(e.target.dataset.id, e.target.dataset.price)
+      displayCart() // Display the cart! 
+    }
+  })
