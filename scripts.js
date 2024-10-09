@@ -86,6 +86,15 @@ const addToCart = (id) => {
     }
 }
 
+const getCartTotal = () => {
+    let total = 0
+    for (let i = 0; i < cart.length; i += 1) {
+      const item = cart[i]
+      total += item.qty * item.price
+    }
+    return total.toFixed(2)
+}
+
 const displayCart = () => {
     console.log(cart)
     let cartStr = ''
@@ -100,11 +109,15 @@ const displayCart = () => {
         <button class="button-sub" data-id="${item.id}">-</button>
       </li>`
     }
-    // Get the cart 
+  
+    // Get the total cost in the cart
+    const cartTotal = getCartTotal()
+    // append a li tag at the end of the cartStr with the total
+    cartStr += `<li>Total: ${cartTotal}</li>`
+  
     const cartItems = document.querySelector('#cart-items')
-    // Set the inner html of the cart
     cartItems.innerHTML = cartStr
-}
+  }
 
 const removeFromCart = (id) => {
     // Loop over items in cart
@@ -154,3 +167,4 @@ const updateCart = (id, val) => {
       }
     }
   }
+
