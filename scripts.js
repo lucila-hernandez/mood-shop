@@ -125,3 +125,32 @@ const removeFromCart = (id) => {
     }
 }
 
+document.body.addEventListener('keydown', (e) => {
+    if (e.target.matches('.input-qty')) {
+      if (e.key === "Enter") {
+        console.log(e.key)
+        const name = e.target.dataset.id
+        // Use parseInt !
+        const value = parseInt(e.target.value)
+        updateCart(name, value)
+        console.log(e)
+        displayCart()
+      }
+    }
+})
+
+const updateCart = (id, val) => {
+    console.log(id, val)
+    for (let i = 0; i < cart.length; i += 1) {
+      const item = cart[i]
+      if (id === item.id) {
+        item.qty = val
+        // If the value is less than 1
+        if (item.qty < 1) {
+          // remove this item from the cart
+          cart.splice(i, 1)
+        }
+        return 
+      }
+    }
+  }
