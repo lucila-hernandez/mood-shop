@@ -31,7 +31,6 @@ for (let i = 0; i < data.length; i += 1) {
 
     // Make a button 
 	const button = document.createElement('button')
-
     button.className = 'add-to-cart'
 	// add an  id name to the button
 	button.dataset.id = data[i].name
@@ -40,8 +39,6 @@ for (let i = 0; i < data.length; i += 1) {
 	button.innerHTML = "Add to Cart"
 	newDiv.appendChild(button)
 }
-
-
 
 const cart = []
 
